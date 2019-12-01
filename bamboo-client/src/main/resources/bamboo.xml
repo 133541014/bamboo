@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+
+    <interfaces>
+        <interface name="com.fish.bamboo.test.api.IUserService" implement="com.fish.bamboo.test.api.UserServiceImpl">
+
+        </interface>
+    </interfaces>
+
+</configuration>
