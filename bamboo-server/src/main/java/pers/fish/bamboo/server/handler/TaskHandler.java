@@ -3,6 +3,7 @@ package pers.fish.bamboo.server.handler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pers.fish.bamboo.common.model.RPCRequest;
+import pers.fish.bamboo.common.model.RPCResponse;
 import pers.fish.bamboo.common.xml.XMLParser;
 
 import java.io.IOException;
@@ -39,7 +40,9 @@ public class TaskHandler implements Runnable {
             RPCRequest request = (RPCRequest) objectInputStream.readObject();
             Object result = handle(request, publish);
             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-            objectOutputStream.writeObject(result);
+            RPCResponse rpcResponse = new RPCResponse();
+            rpcResponse.setResult(result);
+            objectOutputStream.writeObject(rpcResponse);
             objectOutputStream.flush();
         } catch (Exception e) {
 
@@ -66,7 +69,10 @@ public class TaskHandler implements Runnable {
         Object[] parameters = rpcRequest.getParameters();
         Class[] types = new Class[parameters.length];
         for (int i = 0; i < parameters.length; i++) {
-            types[i] = parameters.getClass();
+            Class<?> parameterType = parameters[i].getClass();
+            types[i] = parameterType;
+
+
         }
         Method method = clazz.getMethod(rpcRequest.getMethodName(), types);
         Object result = method.invoke(publish, parameters);

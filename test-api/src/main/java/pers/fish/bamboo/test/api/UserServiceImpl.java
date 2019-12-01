@@ -1,7 +1,7 @@
 package pers.fish.bamboo.test.api;
 
 /**
- * Ğ´µãÊ²Ã´°É
+ *
  *
  * @author WangYichao
  * @date 2019/11/30 17:50
@@ -10,17 +10,17 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public String saveUser(User user) {
-        System.out.println("ÓÃ»§ĞÅÏ¢±£´æ³É¹¦: " + user);
+        System.out.println("ä¿å­˜ç”¨æˆ·ä¿¡æ¯: " + user);
         return "success";
     }
 
     @Override
-    public User getUser(int id) {
+    public User getUser(Integer id) {
         User user = new User();
         user.setId(id);
-        user.setName("ÕÅÈı");
+        user.setName("å¼ ä¸‰");
         user.setSex("1");
-        System.out.println("²éÑ¯µ½ÓÃ»§ĞÅÏ¢: " + user);
+        System.out.println("æŸ¥è¯¢åˆ°ç”¨æˆ·ä¿¡æ¯: " + user);
         return user;
     }
 }

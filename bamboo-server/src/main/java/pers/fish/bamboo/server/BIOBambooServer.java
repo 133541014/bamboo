@@ -29,8 +29,7 @@ public class BIOBambooServer {
         this.port = port;
     }
 
-    public void publish(Object publish) throws Exception {
-        logger.debug("日志好用");
+    public void  publish(Object publish) throws Exception {
         ServerSocket serverSocket = null;
         try {
             serverSocket = new ServerSocket(port);

@@ -1,12 +1,16 @@
 package pers.fish.bamboo.test.api;
 
+import java.io.Serializable;
+
 /**
- * –¥µ„ ≤√¥∞…
+ *
  *
  * @author WangYichao
  * @date 2019/11/30 17:48
  */
-public class User {
+public class User implements Serializable{
+
+    private static final long serialVersionUID = -2138317807545624763L;
 
     private int id;
 

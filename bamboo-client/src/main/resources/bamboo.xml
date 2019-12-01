@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration>
 
-    <interfaces>
-        <interface name="com.fish.bamboo.test.api.IUserService" implement="com.fish.bamboo.test.api.UserServiceImpl">
+    <server host="127.0.0.1" port="7799">
+    </server>
 
-        </interface>
-    </interfaces>
+    <publish name="pers.fish.bamboo.test.api.IUserService" implement="pers.fish.bamboo.test.api.UserServiceImpl">
+
+    </publish>
 
 </configuration>
