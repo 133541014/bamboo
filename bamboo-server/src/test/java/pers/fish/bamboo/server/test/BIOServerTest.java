@@ -2,8 +2,7 @@ package pers.fish.bamboo.server.test;
 
 import org.junit.Ignore;
 import org.junit.Test;
-import pers.fish.bamboo.common.config.XMLConfiguration;
-import pers.fish.bamboo.server.BIOBambooServer;
+import pers.fish.bamboo.server.publish.BIOBambooServer;
 import pers.fish.bamboo.test.api.UserServiceImpl;
 
 /**

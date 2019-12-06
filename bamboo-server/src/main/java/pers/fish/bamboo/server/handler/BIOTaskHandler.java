@@ -19,18 +19,19 @@ import java.net.Socket;
  * @author fish
  * @date 2019/11/30 18:05
  */
-public class TaskHandler implements Runnable {
+public class BIOTaskHandler implements Runnable {
 
-    private static final Logger logger = LoggerFactory.getLogger(TaskHandler.class);
+    private static final Logger logger = LoggerFactory.getLogger(BIOTaskHandler.class);
 
     private Socket socket = null;
     private Object publish = null;
 
-    public TaskHandler(Socket socket, Object publish) {
+    public BIOTaskHandler(Socket socket, Object publish) {
         this.socket = socket;
         this.publish = publish;
     }
 
+    @Override
     public void run() {
         ObjectInputStream objectInputStream = null;
         ObjectOutputStream objectOutputStream = null;
