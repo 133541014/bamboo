@@ -1,11 +1,9 @@
 package pers.fish.bamboo.client.test;
 
+import com.test.ITestService;
 import org.junit.Ignore;
 import org.junit.Test;
 import pers.fish.bamboo.client.proxy.BIOBambooClient;
-import pers.fish.bamboo.common.config.XMLConfiguration;
-import pers.fish.bamboo.test.api.IUserService;
-import pers.fish.bamboo.test.api.User;
 
 /**
  * BIOServer测试
@@ -17,11 +15,11 @@ import pers.fish.bamboo.test.api.User;
 public class BIOClientTest {
 
     @Test
-    public void start(){
+    public void start() {
 
         BIOBambooClient bioBambooClient = new BIOBambooClient();
-        IUserService iUserService = bioBambooClient.getRPCObject(IUserService.class);
-        User user = iUserService.getUser(1);
-        System.out.println(user);
+        ITestService testService = bioBambooClient.getRPCObject(ITestService.class);
+        String result = testService.hello("100");
+        System.out.println("接收到方法返回值: " + result);
     }
 }
