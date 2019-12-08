@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration>
 
-    <server host="172.18.72.162" port="4567">
+    <server host="localhost" port="7799">
     </server>
 
-    <publish name="com.test.ITestService" implement="com.test.TestServiceImpl">
+    <publish name="pers.fish.bamboo.test.api.IUserService" implement="pers.fish.bamboo.test.api.UserServiceImpl">
 
     </publish>
 

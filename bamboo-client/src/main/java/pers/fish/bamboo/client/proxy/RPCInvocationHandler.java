@@ -4,11 +4,9 @@ import pers.fish.bamboo.common.config.BambooConfig;
 import pers.fish.bamboo.common.config.XMLConfiguration;
 import pers.fish.bamboo.common.model.RPCRequest;
 import pers.fish.bamboo.common.model.RPCResponse;
+import pers.fish.bamboo.common.util.ByteUtils;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.net.Socket;
@@ -57,29 +55,32 @@ public class RPCInvocationHandler implements InvocationHandler {
             RPCRequest request = new RPCRequest();
             request.setClassName(implName);
             request.setMethodName(method.getName());
-            request.setParameters(args);
+
+            if (args != null && args.length > 0) {
+                request.setParameters(args);
+            }
 
             BambooConfig bambooConfig = xmlConfiguration.getBambooConfig();
             BambooConfig.Server server = bambooConfig.getServer();
             socket = new Socket(server.getHost(), server.getPort());
-            objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-            objectOutputStream.writeObject(request);
+            OutputStream outputStream = socket.getOutputStream();
+            outputStream.write(ByteUtils.getBytes(request));
             objectInputStream = new ObjectInputStream(socket.getInputStream());
             RPCResponse rpcResponse = (RPCResponse) objectInputStream.readObject();
             Object result = rpcResponse.getResult();
             return result;
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             try {
-                if(objectOutputStream != null) objectOutputStream.close();
+                if (objectOutputStream != null) objectOutputStream.close();
 
-                if(objectInputStream != null) objectInputStream.close();
+                if (objectInputStream != null) objectInputStream.close();
 
-                if(socket != null){
+                if (socket != null) {
                     socket.close();
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }

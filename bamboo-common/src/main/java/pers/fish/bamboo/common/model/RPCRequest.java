@@ -3,7 +3,7 @@ package pers.fish.bamboo.common.model;
 import java.io.Serializable;
 
 /**
- * –¥µ„ ≤√¥∞…
+ *
  *
  * @author fish
  * @date 2019/11/30 18:15

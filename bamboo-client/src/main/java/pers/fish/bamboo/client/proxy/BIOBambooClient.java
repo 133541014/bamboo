@@ -10,7 +10,7 @@ import java.lang.reflect.Proxy;
  * @author fish
  * @date 2019/12/1 11:39
  */
-public class BIOBambooClient {
+public class BIOBambooClient implements BambooClient{
 
     private XMLConfiguration xmlConfiguration = null;
 
@@ -18,6 +18,7 @@ public class BIOBambooClient {
         xmlConfiguration = new XMLConfiguration();
     }
 
+    @Override
     public <T> T getRPCObject(Class<T> clazz) {
 
         if(!clazz.isInterface()){

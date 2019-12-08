@@ -68,14 +68,21 @@ public class BIOTaskHandler implements Runnable {
     private Object handle(RPCRequest rpcRequest, Object publish) throws Exception {
         Class<?> clazz = publish.getClass();
         Object[] parameters = rpcRequest.getParameters();
-        Class[] types = new Class[parameters.length];
-        for (int i = 0; i < parameters.length; i++) {
-            Class<?> parameterType = parameters[i].getClass();
-            types[i] = parameterType;
+        Method method = null;
+
+        if (parameters != null) {
+            Class[] types = new Class[parameters.length];
+            for (int i = 0; i < parameters.length; i++) {
+                Class<?> parameterType = parameters[i].getClass();
+                types[i] = parameterType;
 
 
+            }
+            method = clazz.getMethod(rpcRequest.getMethodName(), types);
+        } else {
+            method = clazz.getMethod(rpcRequest.getMethodName());
         }
-        Method method = clazz.getMethod(rpcRequest.getMethodName(), types);
+
         Object result = method.invoke(publish, parameters);
         return result;
     }
